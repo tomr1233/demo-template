@@ -154,27 +154,27 @@ const TimeSlotSelector: React.FC<TimeSlotSelectorProps> = ({ selectedTime, onTim
   return (
     <div className="w-full">
       {/* Date Navigation Header */}
-      <div className="flex items-center justify-between mb-6 p-4 rounded-lg bg-gray-800/50 border border-gray-700/50">
+      <div className="flex items-center justify-between mb-6 p-4 rounded-lg bg-stone-100/70 border border-stone-200/50">
         <button
           onClick={() => navigateDay('prev')}
           disabled={isPastDate(new Date(currentDate.getTime() - 24 * 60 * 60 * 1000))}
-          className="px-3 py-2 rounded-lg bg-gray-700/50 hover:bg-gray-600/50 
-                     text-gray-300 hover:text-white transition-all duration-200
+          className="px-3 py-2 rounded-lg bg-stone-200/70 hover:bg-stone-300/70 
+                     text-stone-600 hover:text-stone-800 transition-all duration-200
                      font-mono text-sm disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Previous Day
         </button>
         
         <div className="text-center">
-          <div className="text-lg font-mono font-bold text-white">
+          <div className="text-lg font-mono font-bold text-stone-800">
             {formatDate(currentDate)} {timezone && formatTimezone(timezone)}
           </div>
         </div>
         
         <button
           onClick={() => navigateDay('next')}
-          className="px-3 py-2 rounded-lg bg-gray-700/50 hover:bg-gray-600/50 
-                     text-gray-300 hover:text-white transition-all duration-200
+          className="px-3 py-2 rounded-lg bg-stone-200/70 hover:bg-stone-300/70 
+                     text-stone-600 hover:text-stone-800 transition-all duration-200
                      font-mono text-sm"
         >
           Next Day
@@ -183,7 +183,7 @@ const TimeSlotSelector: React.FC<TimeSlotSelectorProps> = ({ selectedTime, onTim
 
       {/* Current Date Display */}
       <div className="text-center mb-6">
-        <h3 className="text-xl font-mono font-semibold text-white mb-2">
+        <h3 className="text-xl font-mono font-semibold text-stone-800 mb-2">
           {currentDate.toLocaleDateString('en-US', {
             weekday: 'long',
             month: 'long',
@@ -196,19 +196,19 @@ const TimeSlotSelector: React.FC<TimeSlotSelectorProps> = ({ selectedTime, onTim
       {/* Loading State */}
       {isLoading && (
         <div className="flex items-center justify-center py-12">
-          <Loader2 className="w-8 h-8 text-blue-400 animate-spin" />
-          <span className="ml-3 text-gray-300 font-mono">Loading available times...</span>
+          <Loader2 className="w-8 h-8 text-amber-600 animate-spin" />
+          <span className="ml-3 text-stone-600 font-mono">Loading available times...</span>
         </div>
       )}
 
       {/* Error State */}
       {error && (
-        <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 mb-6">
-          <p className="text-red-400 font-mono text-sm text-center">{error}</p>
+        <div className="p-4 rounded-lg bg-red-50 border border-red-200 mb-6">
+          <p className="text-red-700 font-mono text-sm text-center">{error}</p>
           <button
             onClick={fetchAvailableSlots}
-            className="mt-2 w-full px-3 py-2 rounded-lg bg-red-500/20 hover:bg-red-500/30 
-                       text-red-300 hover:text-white transition-all duration-200 font-mono text-sm"
+            className="mt-2 w-full px-3 py-2 rounded-lg bg-red-100 hover:bg-red-200 
+                       text-red-700 hover:text-red-800 transition-all duration-200 font-mono text-sm"
           >
             Retry
           </button>
@@ -217,10 +217,10 @@ const TimeSlotSelector: React.FC<TimeSlotSelectorProps> = ({ selectedTime, onTim
 
       {/* No Slots Available */}
       {!isLoading && !error && availableSlots.length === 0 && (
-        <div className="p-6 rounded-lg bg-gray-800/30 border border-gray-700/30 text-center">
-          <Clock className="w-8 h-8 text-gray-500 mx-auto mb-3" />
-          <p className="text-gray-400 font-mono">No available time slots for this date</p>
-          <p className="text-gray-500 font-mono text-sm mt-1">Try selecting a different date</p>
+        <div className="p-6 rounded-lg bg-stone-100/50 border border-stone-200/50 text-center">
+          <Clock className="w-8 h-8 text-stone-500 mx-auto mb-3" />
+          <p className="text-stone-600 font-mono">No available time slots for this date</p>
+          <p className="text-stone-500 font-mono text-sm mt-1">Try selecting a different date</p>
         </div>
       )}
 
@@ -234,8 +234,8 @@ const TimeSlotSelector: React.FC<TimeSlotSelectorProps> = ({ selectedTime, onTim
               className={`
                 px-3 py-2 rounded-lg font-mono text-sm font-medium transition-all duration-200
                 ${isTimeSelected(slot)
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg shadow-blue-500/25'
-                  : 'bg-gray-800/50 text-gray-300 hover:bg-gradient-to-r hover:from-blue-500/20 hover:to-purple-500/20 hover:text-white border border-gray-600/50 hover:border-blue-400/50'
+                  ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-lg shadow-amber-500/25'
+                  : 'bg-white/70 text-stone-700 hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 hover:text-amber-800 border border-stone-200/50 hover:border-amber-300/50'
                 }
               `}
             >
@@ -247,13 +247,13 @@ const TimeSlotSelector: React.FC<TimeSlotSelectorProps> = ({ selectedTime, onTim
 
       {/* Selected Time Display */}
       {selectedTime && (
-        <div className="mt-6 p-4 rounded-lg bg-gradient-to-r from-blue-500/10 to-purple-500/10 
-                       border border-blue-500/20">
+        <div className="mt-6 p-4 rounded-lg bg-gradient-to-r from-amber-50 to-orange-50 
+                       border border-amber-200/50">
           <div className="flex items-center justify-center space-x-2">
-            <Clock className="w-4 h-4 text-blue-400" />
-            <p className="text-center font-mono text-gray-300">
-              <span className="text-blue-400">Selected:</span>{' '}
-              <span className="text-white font-semibold">
+            <Clock className="w-4 h-4 text-amber-700" />
+            <p className="text-center font-mono text-stone-700">
+              <span className="text-amber-700 font-semibold">Selected:</span>{' '}
+              <span className="text-stone-800 font-semibold">
                 {selectedTime.toLocaleString('en-US', {
                   weekday: 'long',
                   month: 'long',

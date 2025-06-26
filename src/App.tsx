@@ -13,12 +13,12 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black">
+    <div className="min-h-screen bg-gradient-to-br from-stone-100 via-amber-50 to-orange-50">
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-stone-200/10 to-amber-200/10 rounded-full blur-3xl"></div>
       </div>
 
       {/* Content */}
@@ -28,23 +28,23 @@ function App() {
           {/* Hero Section */}
           <div className="space-y-6">
             <div className="flex justify-center">
-              <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 
-                             border border-blue-500/30 backdrop-blur-xl">
-                <Zap className="w-12 h-12 text-blue-400" />
+              <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-100/80 to-orange-100/80 
+                             border border-amber-200/50 backdrop-blur-xl shadow-lg">
+                <Zap className="w-12 h-12 text-amber-700" />
               </div>
             </div>
             
             <h1 className="text-5xl md:text-7xl font-mono font-bold">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 
+              <span className="bg-gradient-to-r from-amber-800 via-orange-700 to-amber-800 
                              bg-clip-text text-transparent bg-300% animate-pulse">
-                Future Tech
+                Render Studio
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-300 font-mono max-w-2xl mx-auto leading-relaxed">
-              Experience the next generation of booking systems with our 
-              <span className="text-blue-400 font-semibold"> AI-powered </span>
-              scheduling platform
+            <p className="text-xl md:text-2xl text-stone-700 font-mono max-w-2xl mx-auto leading-relaxed">
+              Experience premium architectural visualization with our 
+              <span className="text-amber-700 font-semibold"> award-winning </span>
+              3D rendering services
             </p>
           </div>
 
@@ -53,19 +53,19 @@ function App() {
             <button
               onClick={() => setIsModalOpen(true)}
               className="inline-flex items-center space-x-3 px-8 py-4 rounded-xl
-                         bg-gradient-to-r from-blue-500 to-purple-500
-                         hover:from-blue-600 hover:to-purple-600
+                         bg-gradient-to-r from-amber-600 to-orange-600
+                         hover:from-amber-700 hover:to-orange-700
                          text-white font-mono font-semibold text-lg
-                         shadow-2xl shadow-blue-500/25 hover:shadow-blue-500/40
+                         shadow-2xl shadow-amber-500/25 hover:shadow-amber-500/40
                          transform hover:scale-105 transition-all duration-300 group"
             >
               <Calendar className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
-              <span>Book Your Session</span>
+              <span>Schedule Consultation</span>
               <Sparkles className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
             </button>
             
-            <p className="text-gray-400 font-mono text-sm">
-              Click to experience our advanced booking modal
+            <p className="text-stone-600 font-mono text-sm">
+              Book a personalized consultation for your project
             </p>
           </div>
 
@@ -74,27 +74,27 @@ function App() {
             {[
               {
                 icon: Calendar,
-                title: "Interactive Calendar",
-                description: "Smart date selection with future-forward UI"
+                title: "Flexible Scheduling",
+                description: "Easy booking system with real-time availability"
               },
               {
                 icon: Zap,
-                title: "Instant Booking",
-                description: "Lightning-fast form processing and validation"
+                title: "Quick Response",
+                description: "Fast project turnaround with premium quality"
               },
               {
                 icon: Sparkles,
-                title: "Premium Design",
-                description: "Production-ready components with modern aesthetics"
+                title: "Premium Service",
+                description: "Professional consultation with expert guidance"
               }
             ].map((feature, index) => (
-              <div key={index} className="p-6 rounded-xl bg-gray-800/30 border border-gray-700/30 
-                                         backdrop-blur-xl hover:bg-gray-800/40 transition-all duration-300">
-                <feature.icon className="w-8 h-8 text-blue-400 mb-4 mx-auto" />
-                <h3 className="text-lg font-mono font-semibold text-white mb-2">
+              <div key={index} className="p-6 rounded-xl bg-white/60 border border-stone-200/50 
+                                         backdrop-blur-xl hover:bg-white/70 transition-all duration-300 shadow-lg">
+                <feature.icon className="w-8 h-8 text-amber-700 mb-4 mx-auto" />
+                <h3 className="text-lg font-mono font-semibold text-stone-800 mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-gray-400 font-mono text-sm">
+                <p className="text-stone-600 font-mono text-sm">
                   {feature.description}
                 </p>
               </div>
@@ -103,15 +103,15 @@ function App() {
 
           {/* Last Booking Display */}
           {lastBooking && (
-            <div className="mt-12 p-6 rounded-xl bg-gradient-to-r from-green-500/10 to-blue-500/10 
-                           border border-green-500/20 backdrop-blur-xl">
-              <h3 className="text-lg font-mono font-semibold text-green-400 mb-3">
-                ✨ Last Booking Confirmed
+            <div className="mt-12 p-6 rounded-xl bg-gradient-to-r from-green-100/80 to-emerald-100/80 
+                           border border-green-200/50 backdrop-blur-xl shadow-lg">
+              <h3 className="text-lg font-mono font-semibold text-green-800 mb-3">
+                ✨ Consultation Scheduled
               </h3>
-              <div className="space-y-2 text-gray-300 font-mono text-sm">
-                <p><span className="text-blue-400">Name:</span> {lastBooking.name}</p>
-                <p><span className="text-blue-400">Email:</span> {lastBooking.email}</p>
-                <p><span className="text-blue-400">Date:</span> {lastBooking.selectedDate?.toLocaleDateString('en-US', {
+              <div className="space-y-2 text-stone-700 font-mono text-sm">
+                <p><span className="text-amber-700 font-semibold">Name:</span> {lastBooking.name}</p>
+                <p><span className="text-amber-700 font-semibold">Email:</span> {lastBooking.email}</p>
+                <p><span className="text-amber-700 font-semibold">Date:</span> {lastBooking.selectedDate?.toLocaleDateString('en-US', {
                   weekday: 'long',
                   year: 'numeric',
                   month: 'long',
