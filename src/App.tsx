@@ -1,127 +1,217 @@
 import React, { useState } from 'react';
-import { Calendar, Sparkles, Zap } from 'lucide-react';
+import { Calendar, Sparkles, Zap, Menu, X } from 'lucide-react';
 import BookingModal from './components/BookingModal';
 import { BookingData } from './types/booking';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [lastBooking, setLastBooking] = useState<BookingData | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleBookingSubmit = (data: BookingData) => {
     setLastBooking(data);
     console.log('Booking submitted:', data);
   };
 
+  const navigationItems = [
+    'Virtual Tours',
+    'Video',
+    'Testimonials',
+    'Pricing',
+    'Contact us',
+    "We're Hiring!"
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-stone-100 via-amber-50 to-orange-50">
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-stone-200/10 to-amber-200/10 rounded-full blur-3xl"></div>
+    <div className="min-h-screen bg-stone-50">
+      {/* Hero Section */}
+      <div className="relative min-h-screen">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')`
+          }}
+        >
+          {/* Overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-stone-900/40 via-stone-900/20 to-stone-900/60"></div>
+        </div>
+
+        {/* Navigation */}
+        <nav className="relative z-20 flex items-center justify-between px-6 lg:px-12 py-6">
+          {/* Logo */}
+          <div className="text-white">
+            <h1 className="text-2xl font-bold tracking-tight">Render Studio</h1>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
+            {navigationItems.map((item, index) => (
+              <a
+                key={index}
+                href="#"
+                className={`text-sm font-medium transition-colors duration-200 ${
+                  item === "We're Hiring!" 
+                    ? 'bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg'
+                    : 'text-white/90 hover:text-white'
+                }`}
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 text-white"
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </nav>
+
+        {/* Mobile Navigation */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden absolute top-20 left-0 right-0 z-20 bg-stone-900/95 backdrop-blur-md border-t border-stone-700/50">
+            <div className="px-6 py-4 space-y-4">
+              {navigationItems.map((item, index) => (
+                <a
+                  key={index}
+                  href="#"
+                  className={`block text-sm font-medium transition-colors duration-200 ${
+                    item === "We're Hiring!" 
+                      ? 'bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg text-center'
+                      : 'text-white/90 hover:text-white'
+                  }`}
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Hero Content */}
+        <div className="relative z-10 flex items-center min-h-screen px-6 lg:px-12">
+          <div className="max-w-4xl">
+            {/* Main Heading */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+              3D Renders for Property Developers.
+            </h1>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="inline-flex items-center justify-center space-x-3 px-8 py-4 rounded-lg
+                           bg-amber-600 hover:bg-amber-700 text-white font-semibold text-lg
+                           shadow-xl shadow-amber-600/25 hover:shadow-amber-600/40
+                           transform hover:scale-105 transition-all duration-300 group"
+              >
+                <Calendar className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
+                <span>Schedule Consultation</span>
+              </button>
+              
+              <button className="px-8 py-4 rounded-lg bg-white/10 hover:bg-white/20 
+                               text-white font-semibold text-lg backdrop-blur-sm
+                               border border-white/20 hover:border-white/30
+                               transition-all duration-300">
+                Download Price Guide
+              </button>
+              
+              <button className="px-8 py-4 rounded-lg bg-stone-800/80 hover:bg-stone-700/80 
+                               text-white font-semibold text-lg backdrop-blur-sm
+                               border border-stone-600/50 hover:border-stone-500/50
+                               transition-all duration-300">
+                Read Our Testimonials
+              </button>
+            </div>
+
+            {/* Subtitle */}
+            <p className="text-xl text-white/90 max-w-2xl leading-relaxed">
+              Transform your architectural visions into stunning photorealistic renders 
+              that captivate clients and accelerate sales.
+            </p>
+          </div>
+        </div>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen p-8">
-        <div className="text-center space-y-8 max-w-4xl mx-auto">
-          
-          {/* Hero Section */}
-          <div className="space-y-6">
-            <div className="flex justify-center">
-              <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-100/80 to-orange-100/80 
-                             border border-amber-200/50 backdrop-blur-xl shadow-lg">
-                <Zap className="w-12 h-12 text-amber-700" />
-              </div>
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl font-mono font-bold">
-              <span className="bg-gradient-to-r from-amber-800 via-orange-700 to-amber-800 
-                             bg-clip-text text-transparent bg-300% animate-pulse">
-                Render Studio
-              </span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-stone-700 font-mono max-w-2xl mx-auto leading-relaxed">
-              Experience premium architectural visualization with our 
-              <span className="text-amber-700 font-semibold"> award-winning </span>
-              3D rendering services
+      {/* Features Section */}
+      <div className="py-20 px-6 lg:px-12 bg-stone-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-stone-800 mb-6">
+              Why Choose Render Studio?
+            </h2>
+            <p className="text-xl text-stone-600 max-w-3xl mx-auto">
+              We specialize in creating premium architectural visualizations that bring your projects to life
             </p>
           </div>
 
-          {/* CTA Section */}
-          <div className="space-y-6 pt-8">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center space-x-3 px-8 py-4 rounded-xl
-                         bg-gradient-to-r from-amber-600 to-orange-600
-                         hover:from-amber-700 hover:to-orange-700
-                         text-white font-mono font-semibold text-lg
-                         shadow-2xl shadow-amber-500/25 hover:shadow-amber-500/40
-                         transform hover:scale-105 transition-all duration-300 group"
-            >
-              <Calendar className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
-              <span>Schedule Consultation</span>
-              <Sparkles className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-            </button>
-            
-            <p className="text-stone-600 font-mono text-sm">
-              Book a personalized consultation for your project
-            </p>
-          </div>
-
-          {/* Demo Features */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                icon: Calendar,
-                title: "Flexible Scheduling",
-                description: "Easy booking system with real-time availability"
-              },
-              {
                 icon: Zap,
-                title: "Quick Response",
-                description: "Fast project turnaround with premium quality"
+                title: "Lightning Fast Delivery",
+                description: "Get your renders in 48-72 hours without compromising on quality"
               },
               {
                 icon: Sparkles,
-                title: "Premium Service",
-                description: "Professional consultation with expert guidance"
+                title: "Photorealistic Quality",
+                description: "Industry-leading visualization technology for stunning results"
+              },
+              {
+                icon: Calendar,
+                title: "Flexible Scheduling",
+                description: "Easy booking system with dedicated project management"
               }
             ].map((feature, index) => (
-              <div key={index} className="p-6 rounded-xl bg-white/60 border border-stone-200/50 
-                                         backdrop-blur-xl hover:bg-white/70 transition-all duration-300 shadow-lg">
-                <feature.icon className="w-8 h-8 text-amber-700 mb-4 mx-auto" />
-                <h3 className="text-lg font-mono font-semibold text-stone-800 mb-2">
+              <div key={index} className="p-8 rounded-2xl bg-white shadow-lg hover:shadow-xl 
+                                         border border-stone-200/50 transition-all duration-300 group">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-amber-100 to-orange-100 
+                               flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <feature.icon className="w-8 h-8 text-amber-700" />
+                </div>
+                <h3 className="text-xl font-bold text-stone-800 mb-4">
                   {feature.title}
                 </h3>
-                <p className="text-stone-600 font-mono text-sm">
+                <p className="text-stone-600 leading-relaxed">
                   {feature.description}
                 </p>
               </div>
             ))}
           </div>
+        </div>
+      </div>
 
-          {/* Last Booking Display */}
-          {lastBooking && (
-            <div className="mt-12 p-6 rounded-xl bg-gradient-to-r from-green-100/80 to-emerald-100/80 
-                           border border-green-200/50 backdrop-blur-xl shadow-lg">
-              <h3 className="text-lg font-mono font-semibold text-green-800 mb-3">
-                ✨ Consultation Scheduled
-              </h3>
-              <div className="space-y-2 text-stone-700 font-mono text-sm">
-                <p><span className="text-amber-700 font-semibold">Name:</span> {lastBooking.name}</p>
-                <p><span className="text-amber-700 font-semibold">Email:</span> {lastBooking.email}</p>
-                <p><span className="text-amber-700 font-semibold">Date:</span> {lastBooking.selectedDate?.toLocaleDateString('en-US', {
+      {/* Last Booking Display */}
+      {lastBooking && (
+        <div className="px-6 lg:px-12 py-8 bg-gradient-to-r from-green-50 to-emerald-50">
+          <div className="max-w-4xl mx-auto p-6 rounded-xl bg-white/80 backdrop-blur-sm 
+                         border border-green-200/50 shadow-lg">
+            <h3 className="text-lg font-bold text-green-800 mb-3 flex items-center">
+              <Sparkles className="w-5 h-5 mr-2" />
+              Consultation Scheduled Successfully
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-stone-700">
+              <div>
+                <span className="text-amber-700 font-semibold">Name:</span> {lastBooking.name}
+              </div>
+              <div>
+                <span className="text-amber-700 font-semibold">Email:</span> {lastBooking.email}
+              </div>
+              <div>
+                <span className="text-amber-700 font-semibold">Date:</span> {lastBooking.selectedDate?.toLocaleDateString('en-US', {
                   weekday: 'long',
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric'
-                })}</p>
+                })}
               </div>
             </div>
-          )}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Booking Modal */}
       <BookingModal
