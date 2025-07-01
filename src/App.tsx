@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Sparkles, Github, Twitter, Linkedin, Mail } from 'lucide-react';
+import { Calendar, Sparkles, Github, Twitter, Linkedin, Mail, Phone, Monitor } from 'lucide-react';
 import BookingModal from './components/BookingModal';
 import { BookingData } from './types/booking';
 
@@ -23,90 +23,100 @@ function App() {
 
       {/* Content */}
       <div className="relative z-10 flex items-center justify-center min-h-screen p-8">
-        <div className="text-center space-y-8 max-w-4xl mx-auto">
+        <div className="text-center space-y-12 max-w-4xl mx-auto">
           
           {/* Hero Section */}
-          <div className="space-y-6">
-            <h1 className="text-5xl md:text-7xl font-mono font-bold">
-              <span className="bg-gradient-to-r from-blue-800 via-indigo-700 to-blue-800 
-                             bg-clip-text text-transparent bg-300% animate-pulse">
-                Hey, Demo User
+          <div className="space-y-8">
+            <h1 className="text-5xl md:text-7xl font-mono font-bold leading-tight">
+              <span className="text-slate-800">Hey </span>
+              <span className="bg-gradient-to-r from-emerald-600 to-teal-600 
+                             bg-clip-text text-transparent">
+                Demo User
               </span>
+              <span className="text-slate-800">,</span>
+              <div className="w-16 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 mx-auto mt-4"></div>
             </h1>
             
-            <p className="text-xl md:text-2xl text-slate-700 font-mono max-w-3xl mx-auto leading-relaxed">
-              I built a tool to simplify your booking process—
-              <span className="text-blue-700 font-semibold"> faster, smoother, and easier </span>
-              for your clients
-            </p>
+            <div className="space-y-6">
+              <p className="text-2xl md:text-3xl text-slate-800 font-mono max-w-3xl mx-auto leading-relaxed">
+                I built a tool that{' '}
+                <span className="bg-gradient-to-r from-emerald-600 to-teal-600 
+                               bg-clip-text text-transparent font-semibold">
+                  answers your customer calls
+                </span>{' '}
+                for you.
+              </p>
+              
+              <p className="text-lg md:text-xl text-slate-600 font-mono max-w-2xl mx-auto leading-relaxed">
+                It's a robot that talks to your customers on the phone, answers their 
+                questions, and helps them get what they need — automatically.
+              </p>
+            </div>
           </div>
 
           {/* CTA Section */}
-          <div className="space-y-6 pt-8">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center space-x-3 px-8 py-4 rounded-xl
-                         bg-gradient-to-r from-blue-600 to-indigo-600
-                         hover:from-blue-700 hover:to-indigo-700
-                         text-white font-mono font-semibold text-lg
-                         shadow-2xl shadow-blue-500/25 hover:shadow-blue-500/40
-                         transform hover:scale-105 transition-all duration-300 group"
-            >
-              <Calendar className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
-              <span>Try the Demo</span>
-              <Sparkles className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-            </button>
+          <div className="space-y-8">
+            <h3 className="text-xl md:text-2xl text-slate-700 font-mono font-medium">
+              Choose how you'd like to try it:
+            </h3>
             
-            <p className="text-slate-600 font-mono text-sm">
-              Experience the streamlined booking process
-            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a
+                href="tel:+1234567890"
+                className="inline-flex items-center space-x-3 px-8 py-4 rounded-xl
+                           bg-gradient-to-r from-emerald-500 to-teal-500
+                           hover:from-emerald-600 hover:to-teal-600
+                           text-white font-mono font-semibold text-lg
+                           shadow-2xl shadow-emerald-500/25 hover:shadow-emerald-500/40
+                           transform hover:scale-105 transition-all duration-300 group"
+              >
+                <Phone className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
+                <span>Call Me</span>
+              </a>
+              
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="inline-flex items-center space-x-3 px-8 py-4 rounded-xl
+                           bg-gradient-to-r from-purple-500 to-violet-500
+                           hover:from-purple-600 hover:to-violet-600
+                           text-white font-mono font-semibold text-lg
+                           shadow-2xl shadow-purple-500/25 hover:shadow-purple-500/40
+                           transform hover:scale-105 transition-all duration-300 group"
+              >
+                <Monitor className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
+                <span>Test in Browser</span>
+              </button>
+            </div>
           </div>
 
           {/* Social Media Links */}
-          <div className="pt-12">
-            <h3 className="text-lg font-mono font-semibold text-slate-800 mb-6">
-              Connect with me
-            </h3>
-            <div className="flex justify-center space-x-6">
-              {[
-                {
-                  icon: Github,
-                  href: "https://github.com",
-                  label: "GitHub",
-                  color: "hover:text-gray-800 hover:bg-gray-100"
-                },
-                {
-                  icon: Twitter,
-                  href: "https://twitter.com",
-                  label: "Twitter",
-                  color: "hover:text-blue-500 hover:bg-blue-50"
-                },
-                {
-                  icon: Linkedin,
-                  href: "https://linkedin.com",
-                  label: "LinkedIn",
-                  color: "hover:text-blue-700 hover:bg-blue-50"
-                },
-                {
-                  icon: Mail,
-                  href: "mailto:hello@example.com",
-                  label: "Email",
-                  color: "hover:text-green-600 hover:bg-green-50"
-                }
-              ].map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`p-4 rounded-xl bg-white/60 border border-slate-200/50 
-                             backdrop-blur-xl transition-all duration-300 shadow-lg
-                             text-slate-600 ${social.color} group`}
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
-                </a>
-              ))}
+          <div className="pt-8">
+            <div className="flex justify-center space-x-8">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 text-slate-500 hover:text-blue-600 
+                           transition-colors duration-300 font-mono text-sm group"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                <span>LinkedIn</span>
+              </a>
+              
+              <a
+                href="https://example.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 text-slate-500 hover:text-slate-700 
+                           transition-colors duration-300 font-mono text-sm group"
+                aria-label="Website"
+              >
+                <div className="w-5 h-5 rounded-full border-2 border-current flex items-center justify-center">
+                  <div className="w-2 h-2 rounded-full bg-current"></div>
+                </div>
+                <span>Website</span>
+              </a>
             </div>
           </div>
 
