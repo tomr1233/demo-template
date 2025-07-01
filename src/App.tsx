@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Sparkles, Zap } from 'lucide-react';
+import { Calendar, Sparkles, Github, Twitter, Linkedin, Mail } from 'lucide-react';
 import BookingModal from './components/BookingModal';
 import { BookingData } from './types/booking';
 
@@ -27,24 +27,17 @@ function App() {
           
           {/* Hero Section */}
           <div className="space-y-6">
-            <div className="flex justify-center">
-              <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-100/80 to-indigo-100/80 
-                             border border-blue-200/50 backdrop-blur-xl shadow-lg">
-                <Zap className="w-12 h-12 text-blue-700" />
-              </div>
-            </div>
-            
             <h1 className="text-5xl md:text-7xl font-mono font-bold">
               <span className="bg-gradient-to-r from-blue-800 via-indigo-700 to-blue-800 
                              bg-clip-text text-transparent bg-300% animate-pulse">
-                Render Studio
+                Hey, Demo User
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-slate-700 font-mono max-w-2xl mx-auto leading-relaxed">
-              Experience premium architectural visualization with our 
-              <span className="text-blue-700 font-semibold"> award-winning </span>
-              3D rendering services
+            <p className="text-xl md:text-2xl text-slate-700 font-mono max-w-3xl mx-auto leading-relaxed">
+              I built a tool to simplify your booking process—
+              <span className="text-blue-700 font-semibold"> faster, smoother, and easier </span>
+              for your clients
             </p>
           </div>
 
@@ -60,45 +53,61 @@ function App() {
                          transform hover:scale-105 transition-all duration-300 group"
             >
               <Calendar className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
-              <span>Schedule Consultation</span>
+              <span>Try the Demo</span>
               <Sparkles className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
             </button>
             
             <p className="text-slate-600 font-mono text-sm">
-              Book a personalized consultation for your project
+              Experience the streamlined booking process
             </p>
           </div>
 
-          {/* Demo Features */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12">
-            {[
-              {
-                icon: Calendar,
-                title: "Flexible Scheduling",
-                description: "Easy booking system with real-time availability"
-              },
-              {
-                icon: Zap,
-                title: "Quick Response",
-                description: "Fast project turnaround with premium quality"
-              },
-              {
-                icon: Sparkles,
-                title: "Premium Service",
-                description: "Professional consultation with expert guidance"
-              }
-            ].map((feature, index) => (
-              <div key={index} className="p-6 rounded-xl bg-white/60 border border-slate-200/50 
-                                         backdrop-blur-xl hover:bg-white/70 transition-all duration-300 shadow-lg">
-                <feature.icon className="w-8 h-8 text-blue-700 mb-4 mx-auto" />
-                <h3 className="text-lg font-mono font-semibold text-slate-800 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-slate-600 font-mono text-sm">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
+          {/* Social Media Links */}
+          <div className="pt-12">
+            <h3 className="text-lg font-mono font-semibold text-slate-800 mb-6">
+              Connect with me
+            </h3>
+            <div className="flex justify-center space-x-6">
+              {[
+                {
+                  icon: Github,
+                  href: "https://github.com",
+                  label: "GitHub",
+                  color: "hover:text-gray-800 hover:bg-gray-100"
+                },
+                {
+                  icon: Twitter,
+                  href: "https://twitter.com",
+                  label: "Twitter",
+                  color: "hover:text-blue-500 hover:bg-blue-50"
+                },
+                {
+                  icon: Linkedin,
+                  href: "https://linkedin.com",
+                  label: "LinkedIn",
+                  color: "hover:text-blue-700 hover:bg-blue-50"
+                },
+                {
+                  icon: Mail,
+                  href: "mailto:hello@example.com",
+                  label: "Email",
+                  color: "hover:text-green-600 hover:bg-green-50"
+                }
+              ].map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`p-4 rounded-xl bg-white/60 border border-slate-200/50 
+                             backdrop-blur-xl transition-all duration-300 shadow-lg
+                             text-slate-600 ${social.color} group`}
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Last Booking Display */}
@@ -106,7 +115,7 @@ function App() {
             <div className="mt-12 p-6 rounded-xl bg-gradient-to-r from-green-100/80 to-emerald-100/80 
                            border border-green-200/50 backdrop-blur-xl shadow-lg">
               <h3 className="text-lg font-mono font-semibold text-green-800 mb-3">
-                ✨ Consultation Scheduled
+                ✨ Booking Confirmed
               </h3>
               <div className="space-y-2 text-slate-700 font-mono text-sm">
                 <p><span className="text-blue-700 font-semibold">Name:</span> {lastBooking.name}</p>
