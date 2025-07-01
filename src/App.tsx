@@ -28,8 +28,8 @@ function App() {
           {/* Hero Section */}
           <div className="space-y-6">
             <h1 className="text-5xl md:text-7xl font-mono font-bold">
-              <span className="bg-gradient-to-r from-blue-800 via-indigo-700 to-blue-800 
-                             bg-clip-text text-transparent bg-300% animate-pulse">
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 via-indigo-600 to-blue-600 
+                             bg-clip-text text-transparent bg-[length:200%_100%] animate-[gradient_3s_ease-in-out_infinite]">
                 Hey, Demo User
               </span>
             </h1>
